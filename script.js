@@ -32,6 +32,7 @@ function loadTasks() {
     var taskId = toDo[i].id;
     $('#' + taskId).val(taskTxt);
   }
+  getAudit();
 };
 
 // Save Button is Clicked
@@ -55,16 +56,11 @@ $('.saveBtn').click(function() {
 function auditTasks(taskEl) {
     var rowHour = parseInt($(taskEl).parent('.row').attr('id'));
 
-    console.log(rowHour);
-    console.log(currentHour);
-    console.log(taskEl);
-
     //Remove any previous classes
     $(taskEl).removeClass('present future past');
 
     //Apply new class based on timeframe
     if (rowHour === currentHour) {
-        console.log('present');
         $(taskEl).addClass('present');
     }
     else if (rowHour < currentHour) {
@@ -87,4 +83,4 @@ loadTasks();
 
 setInterval(function() {
     getAudit();
-}, 5000);
+}, 50000);
