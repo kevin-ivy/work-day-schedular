@@ -76,7 +76,7 @@ function auditTasks(taskEl) {
 loadTasks();
 
 setInterval(function() {
-    $('.time-block .description').each(function (el){
+    $('.description').each(function (el){
       auditTasks(el);
     });
-}, 2000);
+}, 5000);
