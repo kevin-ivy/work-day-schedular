@@ -53,7 +53,11 @@ $('.saveBtn').click(function() {
 
 //Check the current time versus the category
 function auditTasks(taskEl) {
-    rowHour = parseInt($('.description').parent('.row').attr('id'));
+    var rowHour = parseInt($(taskEl).parent('.row').attr('id'));
+
+    console.log(rowHour);
+    console.log(currentHour);
+    console.log(taskEl);
 
     //Remove any previous classes
     $(taskEl).removeClass('present future past');
@@ -64,19 +68,23 @@ function auditTasks(taskEl) {
         $(taskEl).addClass('present');
     }
     else if (rowHour < currentHour) {
-        console.log('past');
         $(taskEl).addClass('past');
     }
     else if (rowHour > currentHour) {
-        console.log('future');
         $(taskEl).addClass('future');
     }
+};
+
+function getAudit() {
+    $(document).ready(function(){
+        $('.description').each(function () {
+        auditTasks(this);
+        });
+    });
 };
 
 loadTasks();
 
 setInterval(function() {
-    $('.description').each(function (el){
-      auditTasks(el);
-    });
+    getAudit();
 }, 5000);
